@@ -1,7 +1,8 @@
 import { Auth } from "aws-amplify";
 import React from "react";
+import QRCodeGenerator from "./QRCodeGenerator";
 
-export default function Navbar({children, }){
+export default function Navbar({children, handleQRCodeModal }){
    const onLogout = () => {
         Auth.signOut();
         window.location.reload();
@@ -22,8 +23,8 @@ export default function Navbar({children, }){
         shadow-lg
         navbar navbar-expand-lg navbar-light
         ">
-        <div class="container-fluid w-full flex flex-wrap items-center justify-between px-6">
-                <p>TJ</p>
+        <div class="container-fluid w-full flex flex-wrap items-center align-middle justify-between px-6">
+                <QRCodeGenerator onClick={handleQRCodeModal} />
                 <p>Event Upload</p>
                 <a><p onClick={() => onLogout()}>Logout</p></a>
         </div>

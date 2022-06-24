@@ -13,6 +13,8 @@ import Navbar from "./components/Navbar";
 import Loading from "./components/Loading";
 import { Storage, Auth } from "aws-amplify"
 import { Modal } from "./components/Modal";
+import QRCodeGenerator from "./components/QRCodeGenerator";
+import { QRCodeModal } from "./components/QRCodeModal";
 
 Amplify.configure(awsconfig);
 
@@ -24,6 +26,7 @@ function App() {
   const [user, setUser] = React.useState();
   const [open, setOpen] = React.useState(false);
   const [openImage, setOpenImage] = React.useState();
+  const [qrCode, setQrCode] = React.useState(false)
 
   useEffect(() => {
     getImages();
@@ -42,6 +45,9 @@ function App() {
     setOpen(open ? false : true)
   }
 
+  const handleQRCodeModal = () => {
+    setQrCode(qrCode ? false : true)
+  }
   const upload = async () => {
     setUploading(true);
 
@@ -72,8 +78,13 @@ function App() {
 
   return (
     <>
-      <Navbar />
-        {open && <Modal onClose={handleModal} imageURL={openImage} />}
+      <Navbar handleQRCodeModal={handleQRCodeModal} />
+        {open &&
+          <Modal onClose={handleModal}>
+              <img class="block object-cover object-center w-full rounded-lg " src={openImage} />
+          </Modal>
+        }
+        {qrCode &&  <QRCodeModal onClose={handleQRCodeModal} />}
         <ImagePicker onSelect={handleChange} onSubmit={() => upload()}/>
         { uploading ? <Loading /> : <> </>}
         <div class="flex items-center py-4">
