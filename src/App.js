@@ -85,21 +85,19 @@ function App() {
               <img alt="event-" class="block object-cover object-center w-full rounded-lg " src={openImage} />
           </Modal>
         }
+        {/* QR CODE MODAL */}
         {qrCode &&  <QRCodeModal onClose={handleQRCodeModal} />}
         <ImagePicker onSelect={handleChange} onSubmit={() => upload()}/>
+
+        {/* Loading */}
         { uploading ? <Loading /> : <> </>}
         <div class="flex items-center py-4">
+          <div class="flex-grow h-px bg-gray-400"></div>
+            <span class="flex-shrink text-2xl text-gray-500 px-4 italic font-light">Event Album</span>
+          <div class="flex-grow h-px bg-gray-400"></div>
+        </div>
 
-        <div class="flex-grow h-px bg-gray-400"></div>
-
-
-        <span class="flex-shrink text-2xl text-gray-500 px-4 italic font-light">Event Album</span>
-
-
-        <div class="flex-grow h-px bg-gray-400"></div>
-
-    </div>
-        {/* <button onClick={signOut}>Sign Out</button> */}
+        {/* Photo Album */}
         <ImageGallery>
           <ListPhotos imageUrls={imageUrls} loading={loading} user={user} onClick={handleModal} />
         </ImageGallery>
