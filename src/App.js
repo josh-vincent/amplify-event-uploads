@@ -55,7 +55,7 @@ function App() {
     await uploadToS3(images)
         .then(setUploading(false))
         .then(setLoading(true))
-
+        .then(setImages([]))
   }
 
   async function getImages() {
