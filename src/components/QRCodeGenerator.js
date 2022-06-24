@@ -6,8 +6,7 @@ export default function QRCodeGenerator({qrText, onClick}) {
 
     useEffect(() => {
         setQRUrl(window.location.href);
-        console.log(window.location.href)
-      }, [window]);
+      }, []);
 
     return ( <>
             <button>

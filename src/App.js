@@ -1,20 +1,19 @@
-import Amplify from "aws-amplify";
+import Amplify, { Storage, Auth } from "aws-amplify";
 import React, { useEffect } from "react";
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import "./App.css";
 
 import awsconfig from "./aws-exports";
-import ImagePicker from "./components/ImagePicker";
-import uploadToS3 from "./components/UploadToS3";
-import { ListPhotos } from "./components/ListPhotos";
-import ImageGallery from "./components/ImageGallery";
+
 import Navbar from "./components/Navbar";
 import Loading from "./components/Loading";
-import { Storage, Auth } from "aws-amplify"
 import { Modal } from "./components/Modal";
-import QRCodeGenerator from "./components/QRCodeGenerator";
+import uploadToS3 from "./components/UploadToS3";
+import ImagePicker from "./components/ImagePicker";
+import ImageGallery from "./components/ImageGallery";
 import { QRCodeModal } from "./components/QRCodeModal";
+import { ListPhotos } from "./components/ListPhotos";
 
 Amplify.configure(awsconfig);
 
@@ -33,7 +32,9 @@ function App() {
   }, [loading]);
 
   useEffect(() => {
-    Auth.currentAuthenticatedUser().then(result => setUser(result))
+    Auth.currentAuthenticatedUser().then(result => {
+      setUser(result)
+    })
   }, []);
 
   const handleChange = (files) => {
@@ -81,7 +82,7 @@ function App() {
       <Navbar handleQRCodeModal={handleQRCodeModal} />
         {open &&
           <Modal onClose={handleModal}>
-              <img class="block object-cover object-center w-full rounded-lg " src={openImage} />
+              <img alt="event-" class="block object-cover object-center w-full rounded-lg " src={openImage} />
           </Modal>
         }
         {qrCode &&  <QRCodeModal onClose={handleQRCodeModal} />}

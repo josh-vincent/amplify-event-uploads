@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 export function Modal({imageURL, open, onClose, children}) {
-    console.log(imageURL)
-
     return (
         <>
         <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">

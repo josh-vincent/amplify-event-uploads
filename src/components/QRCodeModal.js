@@ -6,7 +6,7 @@ export function QRCodeModal({onClose}) {
 
   useEffect(() => {
       setQRUrl(window.location.href);
-    }, [window]);
+    }, []);
 
     return (
         <>
@@ -14,14 +14,15 @@ export function QRCodeModal({onClose}) {
           <div className="relative w-auto my-12 mx-auto max-w-3xl ">
             <div className="border-0 rounded-lg shadow-lg relative flex flex-col bg-white outline-none focus:outline-none max-h-screen m-8">
               <div className="relative p-6 flex-auto">
-              <button
+                <button
                   className="bg-transparent border-0 text-black absolute top-0 right-0"
                   onClick={onClose}>
                   <span className="text-black opacity-7 h-6 w-6 text-xl block py-0 rounded-full">
                     x
                   </span>
                 </button>
-                 <QRCode size={256} value={qrUrl} />
+
+                <QRCode size={256} value={qrUrl} />
               </div>
             </div>
           </div>

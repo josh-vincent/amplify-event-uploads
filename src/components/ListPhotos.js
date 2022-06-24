@@ -1,5 +1,5 @@
-import { Auth } from "aws-amplify";
-import React, { useEffect } from "react";
+import React from "react";
+
 export function ListPhotos({imageUrls, loading, user, onClick}) {
 
     const imagePressed = (image) => {

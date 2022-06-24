@@ -3,8 +3,8 @@ import React from "react";
 import QRCodeGenerator from "./QRCodeGenerator";
 
 export default function Navbar({children, handleQRCodeModal }){
-   const onLogout = () => {
-        Auth.signOut();
+   const onLogout = async () => {
+        await Auth.signOut();
         window.location.reload();
     }
 
@@ -26,7 +26,9 @@ export default function Navbar({children, handleQRCodeModal }){
         <div class="container-fluid w-full flex flex-wrap items-center align-middle justify-between px-6">
                 <QRCodeGenerator onClick={handleQRCodeModal} />
                 <p>Event Upload</p>
-                <a><p onClick={() => onLogout()}>Logout</p></a>
+                <button>
+                    <p onClick={() => onLogout()}>Logout</p>
+                </button>
         </div>
         </nav>
     )
